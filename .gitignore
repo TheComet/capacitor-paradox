@@ -1,0 +1,25 @@
+# LaTeX stuff
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.dvi
+*-blx.bib
+*.bcf
+*.run.xml
+*.synctex.*
+pro6_Thesis_Alex_Murray.pdf
+
+# libreoffice stuff
+*.ods#
+
+# temp files
+*.swp
+
+# qti temp files
+*.qti~
+
