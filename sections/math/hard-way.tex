@@ -8,11 +8,10 @@ resistor.
 Closing the switch in circuit \ref{fig:circuit} at $t=0$ completes the circuit
 and Kirchhoff's second law must hold true:
 
-\begin{align}
-    \sum_{k=1}^{N} V_k &= 0 \\
-    V_{C_1}(t) &= V_R(t) + V_{C_2}(t)
+\begin{equation}
+    V_{C_1}(t) = V_R(t) + V_{C_2}(t)
     \label{eq:khv}
-\end{align}
+\end{equation}
 
 Kirchoff's first  law  also  states  that  the  current  through  the resistor
 $i_R(t)$ must be equal to the current leaving and entering the  two capacitors
@@ -46,14 +45,24 @@ equation \ref{eq:khv} we obtain the differential equation
 where $\Delta V = V_{0,C_1} - V_{0,C_2}$.
 
 One way to solve this  differential  equation  is with the help of the Laplace
-transform, using the following relationships.
+transform,     using     the      relationships      listed      in      table
+\ref{tab:laplace-transforms}.
 
-\begin{align}
-    \laplace{af(t)} &= aF(s), & f(t<0)=0 \\
-    \laplace{a} &= \frac{a}{s}, & a > 0 \\
-    \laplace{e^{-at}} &= \frac{1}{s+a}, & a > 0 \label{eq:expdecay} \\
-    \laplace{\int_0^t f(\tau)\,d\tau} &= \frac{F(s)}{s}, & f(\tau<0)=0
-\end{align}
+\begin{table}
+    \centering
+    \caption{Relevant Laplace Transforms}
+    \begin{threeparttable}\begin{tabular}{lll}
+        \toprule
+        \textbf{Time function}              & \textbf{Transformed} & \textbf{Validity} \\
+        \midrule
+        $af(t)$                   & $aF(s)$              & $f(t<0)=0$ \\
+        $a$                       & $\frac{a}{s}$        & $a > 0$ \\
+        $e^{-at}$                 & $\frac{1}{s+a}$      & $a > 0$  \\
+        $\int_0^t f(\tau)\,d\tau$ & $\frac{F(s)}{s}$     & $f(\tau<0)=0$ \\
+        \bottomrule
+    \end{tabular}\end{threeparttable}
+    \label{tab:laplace-transforms}
+\end{table}
 
 Transforming equation \ref{eq:diff} results yields:
 
@@ -119,7 +128,7 @@ to see that  the  energy dissipated by the resistor \textbf{does not depend on
 the value of the resistor!}
 
 \begin{align}
-    \lim_{R\to\infty} & \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \left(1 - e^{\frac{-2t\left(C_1+C_2\right)}{RC_1C_2}}\right) \\
+    \lim_{t\to\infty} & \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \left(1 - e^{\frac{-2t\left(C_1+C_2\right)}{RC_1C_2}}\right) \\
     &= \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \label{eq:finalresult}
 \end{align}
 
