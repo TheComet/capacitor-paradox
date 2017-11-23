@@ -1,0 +1,48 @@
+\subsubsection{Energy Transferred}
+
+The  current function  $i(t)$  from  equation  \ref{eq:currentresult}  can  be
+re-inserted  into  the integral equations  \ref{eq:vc1}  and  \ref{eq:vc2}  to
+calculate the voltage over capacitor $C_2$:
+
+\begin{align}
+    v_{C_2}(t) &= \frac{I_0}{C_2} \int_0^t e^\frac{-z}{\tau}\,dz + V_{0,C_2}\\
+               &= -\frac{I_0\tau}{C_2} \cdot e^\frac{-z}{\tau} \bigg|_0^t + V_{0,C_2} \\
+               &= \frac{I_0\tau}{C_2}\left(1-e^\frac{-t}{\tau}\right) + V_{0,C_2}
+\end{align}
+
+The power is of course $v_{C_2}(t) \cdot i(t)$
+
+\begin{align}
+    p_{C_2}(t) &= v_{C_2}(t)\cdot i(t) \\
+               &= \left( \frac{I_0\tau}{C}\left(1 - e^\frac{-t}{\tau}\right) + V_0 \right) \cdot I_0\,e^\frac{-t}{\tau} \\
+               &= \frac{I_0^2\tau}{C}\left(e^\frac{-t}{\tau}-e^\frac{-2t}{\tau}\right) + V_0I_0\,e^\frac{-t}{\tau}
+\end{align}
+
+and the energy is therefore
+
+\begin{align}
+    e_{C_2}(t) &= \int_0^z p_{C_2}(t)\,dz \\
+               & \begin{aligned}
+                   = \frac{I_0^2\tau}{C_2}\int_0^t e^\frac{-z}{\tau}\,dz &- \frac{I_0^2\tau}{C_2}\int_0^t e^\frac{-2z}{\tau}\,dz \\
+                                                                         &+ U_0I_0\int_0^t e^\frac{-z}{\tau}\,dz
+                 \end{aligned} \\
+               & \begin{aligned}
+                   = \frac{I_0^2\tau^2}{C_2}\left(1-e^\frac{-t}{\tau}\right) - \frac{I_0^2\tau^2}{2C_2}\left(1-e^\frac{-2t}{\tau}\right) \\
+                                                                             + V_{0,C_2}I_0\tau\left(1-e^\frac{-t}{\tau}\right)
+                 \end{aligned}
+\end{align}
+
+By substituting $\tau=R\frac{C_1C_2}{C_1+C_2}$ and $I_0=\frac{\Delta V}{R}$ we can further simplify the equation. The steps are omitted, but the resulting final function for the energy entering the capacitor $C_2$ is:
+
+\begin{multline}
+    e_{C_2}(t) = \frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}{\Delta V}^2\left(1-2e^\frac{-t}{\tau}-e^\frac{-2t}{\tau}\right) \\
+               + \Delta V\cdot V_{0,C_2}\frac{C_1C_2}{C_1+C_2}\left(1-e^\frac{-t}{\tau}\right)
+\end{multline}
+
+If we allow the circuit to settle for a significant amount of time, we obtain the total amount of energy transferred into capacitor $C_2$.
+
+\begin{equation}\begin{aligned}
+    \lim_{t\to\infty} e_{C_2}(t) &= \frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}{\Delta V}^2 \\
+                                 &+ \Delta V\cdot V_{0,C_2}\frac{C_1C_2}{C_1+C_2}
+    \label{eq:capacitor-energy}
+\end{aligned}\end{equation}

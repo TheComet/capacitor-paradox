@@ -1,1 +1,35 @@
-\section{Discussion}
+\section{Results}
+
+The equation \ref{eq:resistor-energy} from \textit{The Hard Way} is consistent with the formula we derived by using \textit{The Easy Way}.
+
+If we assume that $C_2$ is completely discharged ($V_{0,C_2}=0$) and that $C_1=C_2$, we get the surprising result that a quarter of the transferred energy is dissipated on the resistor, \textbf{regardless of the resistor}. This turns out to be half of the total amount of initial energy, if you take into consideration that $C_1$ will have the same charge as $C_2$ after the circuit has settled.
+
+\begin{align}
+    \frac{e_{C_2}}{e_R} &= \frac{\frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}\Delta V^2}{\frac{1}{2}\frac{C_1C_2}{C_1+C_2}\Delta V^2} \\
+                        &= \frac{C_1}{C_1+C_2} \\
+                        &= \frac{1}{2}
+\end{align}
+
+This, however, is only the case when $C_1=C_2$.
+
+To get an idea of how much energy is lost with different sized capacitors, we can calculate a ``transfer efficiency'' factor by dividing the energy that arrives at $C_2$, $e_{C_2}(t)\mid_{t\to\infty}$, by the total amount of transferred energy, $e_{C_2}(t)\mid_{t\to\infty} + e_R(t)\mid_{t\to\infty}$, for different ratios of $r=\frac{C_2}{C_1}$. That is:
+
+\begin{equation}
+    \eta(r) = \frac{e_{C_2}(t)\mid_{t\to\infty}}{e_{C_2}(t)\mid_{t\to\infty} + e_R(t)\mid_{t\to\infty}}
+\end{equation}
+
+The resulting efficiency function can be seen in figure \ref{fig:transfer-efficiency}.
+
+\begin{figure}[t]
+    \centering
+    \input{images/transfer-efficiency.tex}
+    \caption{Efficiency of energy transfer for different $C_1$ to $C_2$ ratios.}
+    \label{fig:transfer-efficiency}
+\end{figure}
+
+From this graph we see that when $\frac{C_2}{C_1}=1$ or $C_1=C_2$, the transfer efficiency is \SI{33.3}{\percent} (since $e_R\mid_{t\to\infty} = e_{C_2}\mid_{t\to\infty}$.
+
+As the value of $C_2$ grows larger than $C_1$, more and more energy is dissipated on $R$ versus being transferred into $C_2$.
+
+As the value of $C_2$ grows smaller than $C_1$, the energy transfer gets more and more efficient, peaking at a theoretical maximum of \SI{50}{\percent}.
+

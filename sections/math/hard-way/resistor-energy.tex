@@ -1,0 +1,128 @@
+\subsubsection{Energy Dissipated}
+
+Closing the switch in circuit \ref{fig:circuit} at $t=0$ completes the circuit
+and Kirchhoff's second law must hold true:
+
+\begin{equation}
+    V_{C_1}(t) = V_R(t) + V_{C_2}(t)
+    \label{eq:khv}
+\end{equation}
+
+Kirchoff's first  law  also  states  that  the  current  through  the resistor
+$i_R(t)$ must be equal to the current leaving and entering the  two capacitors
+$i_{C_1}(t)$ and $i_{C_2}(t)$.
+
+\begin{equation}
+    i(t) = i_R(t) = i_{C_1}(t) = i_{C_2}(t)
+    \label{eq:khi}
+\end{equation}
+
+In  order to solve for the unknown function  $i(t)$,  the  voltage  over  each
+element can be expressed as a function of current:
+
+\begin{align}
+    V_R    (t) &= i(t)R \label{eq:vr}\\
+    V_{C_1}(t) &= -\frac{1}{C_1}\int_0^t i(\tau)\,d\tau + V_{0,C_1} \label{eq:vc1}\\
+    V_{C_2}(t) &= \frac{1}{C_2}\int_0^t i(\tau)\,d\tau + V_{0,C_2} \label{eq:vc2}
+\end{align}
+
+Note  the negation in equation \ref{eq:vc1}, because the voltage $V_{C_1}$  is
+drawn in the reverse direction in figure \ref{fig:circuit}.
+
+By substituting the equations  \ref{eq:vr}, \ref{eq:vc1} and \ref{eq:vc2} into
+equation \ref{eq:khv} we obtain the differential equation
+
+\begin{equation}
+    \frac{1}{C_1}\int_0^t i(\tau)\,d\tau + \Delta V = i(t)R + \frac{1}{C_2}\int_0^t i(\tau)\,d\tau
+    \label{eq:diff}
+\end{equation}
+
+where $\Delta V = V_{0,C_1} - V_{0,C_2}$.
+
+One way to solve this  differential  equation  is with the help of the Laplace
+transform,     using     the      relationships      listed      in      table
+\ref{tab:laplace-transforms}.
+
+\begin{table}
+    \centering
+    \caption{Relevant Laplace Transforms}
+    \begin{threeparttable}\begin{tabular}{lll}
+        \toprule
+        \textbf{Time function}              & \textbf{Transformed} & \textbf{Validity} \\
+        \midrule
+        $af(t)$                   & $aF(s)$              & $f(t<0)=0$ \\
+        $a$                       & $\frac{a}{s}$        & $a > 0$ \\
+        $e^{-at}$                 & $\frac{1}{s+a}$      & $a > 0$  \\
+        $\int_0^t f(\tau)\,d\tau$ & $\frac{F(s)}{s}$     & $f(\tau<0)=0$ \\
+        \bottomrule
+    \end{tabular}\end{threeparttable}
+    \label{tab:laplace-transforms}
+\end{table}
+
+Transforming equation \ref{eq:diff} results yields:
+
+\begin{align}
+    \frac{I(s)}{sC_1} &= I(s)R + \frac{I(s)}{sC_2} - \frac{\Delta V}{s}\\
+    \frac{\Delta V}{s} &= I(s)\frac{sRC_2 + 1}{sC_2} + \frac{I(s)}{sC_1} \\
+    \Delta V &= I(s)\frac{sRC_1C_2 + C_1 + C_2}{C_1C_2} \\
+    I(s) &= \frac{\Delta V C_1 C_2}{sRC_1C_2 + C_1 + C_2} \\
+    I(s) &= \frac{\Delta V}{R}\cdot\frac{1}{s + \frac{C_1 + C_2}{RC_1C_2}} \label{eq:laplaceresult}
+\end{align}
+
+Equation \ref{eq:laplaceresult} can  be  transformed back into the time domain
+by using the relationship described by  equation  \ref{eq:expdecay}, and so we
+obtain the well-known current formula for an RC-Network.
+
+\begin{equation}
+    i(t) = I_0 \cdot e^{\frac{-t}{\tau}} \hspace{5mm} \begin{aligned}
+        I_0  &= \frac{V_{0,C_1}-V_{0,C_2}}{R} \\
+        \tau &= R \frac{C_1C_2}{C_1+C_2}
+    \end{aligned}
+    \label{eq:currentresult}
+\end{equation}
+
+This result is intuitive, because from the perspective of the resistor (with a
+closed   switch),   we   effectively   ``see''   a   total    capacitance   of
+$\frac{C_1C_2}{C_1+C_2}$  charged  to  a voltage of $V_{0,C_1}  -  V_{0,C_2}$.
+
+The power and  energy  dissipated  by  the resistor can be calculated from the
+current $i(t)$:
+
+\begin{align}
+    p_R(t) &= i^2(t) R \label{eq:power} \\
+    e_R(t) &= \int_0^t p_R(\tau)\,d\tau \label{eq:energy}
+\end{align}
+
+Substituting  the equation for $i(t)$ \ref{eq:currentresult}  into  the  power
+equation \ref{eq:power} yields:
+
+\begin{align}
+    p_R(t) &= R\left(\frac{\Delta V}{R} e^{\frac{-t}{\tau}}\right)^2 \\
+           &= \frac{{\Delta V}^2}{R} e^{\frac{-2t}{\tau}}
+\end{align}
+
+Substituting  this  equation  into the  energy  equation  \ref{eq:energy}  and
+solving the integral yields:
+
+\begin{align}
+    e_R(t) &= \frac{{\Delta V}^2}{R} \int_0^t e^{\frac{-2z}{\tau}}\,dz \\
+           &= \frac{{\Delta V}^2}{R} \left(-\frac{\tau}{2} e^{\frac{-2z}{\tau}} \bigg|_0^t\right) \\
+           &= \frac{{\Delta V}^2}{R} \frac{\tau}{2}\left(1 - e^{\frac{-2t}{\tau}}\right)
+\end{align}
+
+The resulting expression can further be simplified by substituting $\tau$ with
+the result from equation \ref{eq:currentresult}:
+
+\begin{align}
+    e_R(t) &= \frac{{\Delta V}^2}{R} \frac{RC_1C_2}{2\left(C_1+C_2\right)}\left(1 - e^{\frac{-2t}{\tau}}\right) \\
+           &= \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \left(1 - e^{\frac{-2t\left(C_1+C_2\right)}{RC_1C_2}}\right)
+\end{align}
+
+If we allow the circuit to settle for a significant amount of time, it is easy
+to see that  the  energy dissipated by the resistor \textbf{does not depend on
+the value of the resistor!}
+
+\begin{align}
+    \lim_{t\to\infty} & \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \left(1 - e^{\frac{-2t\left(C_1+C_2\right)}{RC_1C_2}}\right) \\
+    &= \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \label{eq:resistor energy}
+\end{align}
