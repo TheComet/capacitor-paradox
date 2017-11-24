@@ -10,22 +10,8 @@ losses.
 A more  realistic  model is one that models the imperfections
 of the switch and is shown in figure \ref{fig:circuit}.
 
-\begin{figure}[th!]
-\centering
-\begin{circuitikz} \draw
-    (0,0) to[C=$C_1$,v<=$V_{0,C_1}$,i=$i(t)$] (0,3)
-          to[spst]                            (1.5,3)
-          to[R=$R$,v=$V_R$,i=$i(t)$]          (4,3)
-          to[C=$C_2$,v=$V_{0,C_2}$,i>=$i(t)$] (4,0)
-          to                                  (0,0)
-    ;
-\end{circuitikz}
-    \caption{}
-    \label{fig:circuit}
-\end{figure}
-
 This new model at least gets rid  of the mathematical impossibility and allows
 us  to  analyse  the  circuit  in  more  detail.  There  are  two  approaches.
 
 \input{sections/math/easy-way}
-\input{sections/math/hard-way}
+\clearpage\input{sections/math/hard-way}

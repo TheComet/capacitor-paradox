@@ -1,0 +1,53 @@
+\section{Results}
+
+The two final formulas we derived describe the \textit{energy transferred} and
+the  \textit{energy  dissipated}  and  are listed  here  again,  respectively.
+
+\begin{align}
+    e_{C_2} &= \frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}{\Delta V}^2 + \Delta V\cdot V_{0,C_2}\frac{C_1C_2}{C_1+C_2} \label{eq:capacitor-energy2} \\
+    e_R     &= \frac{1}{2}\frac{C_1C_2}{C_1+C_2}{\Delta V}^2 \label{eq:resistor-energy2}
+\end{align}
+
+If we assume that $C_2$ is discharged ($V_{0,C_2} = 0$) and that $C_1=C_2$, we
+get  the  surprising  result  that a quarter  of  the  transferred  energy  is
+dissipated  on  the  resistor, \textbf{regardless of the resistor}. This turns
+out to be half of  the  total  amount  of  initial  energy,  if  you take into
+consideration that $C_1$ will have the same charge  as $C_2$ after the circuit
+has settled.
+
+\begin{align}
+    \frac{e_{C_2}}{e_R} &= \frac{\frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}\Delta V^2}{\frac{1}{2}\frac{C_1C_2}{C_1+C_2}\Delta V^2} \\
+                        &= \frac{C_1}{C_1+C_2} \\
+                        &= \frac{1}{2}
+\end{align}
+
+This  is an efficiency of \SI{33}{\percent}. However, this is  only  the  case
+when $C_1=C_2$.
+
+To get an idea of how much energy is lost  with different sized capacitors, we
+can calculate a  ``transfer  efficiency''  factor  by dividing the energy that
+arrives  at  $C_2$  ($e_{C_2}$)  by  the total amount  of  transferred  energy
+($e_{C_2}  + e_R$) for  different  ratios  of  $r=\frac{C_2}{C_1}$.  That  is:
+
+\begin{equation}
+    \eta(r) = \frac{e_{C_2}}{e_{C_2} + e_R}
+\end{equation}
+
+The    resulting    efficiency    function    can    be    seen   in    figure
+\ref{fig:transfer-efficiency}.
+
+\begin{figure}[t]
+    \centering
+    \input{images/transfer-efficiency.tex}
+    \caption{Efficiency of energy transfer for different $C_1$ to $C_2$ ratios.}
+    \label{fig:transfer-efficiency}
+\end{figure}
+
+From  this  graph  we  see   that   for  $C_1=C_2$,  the  resistor  dissipates
+\SI{33}{\percent} of the energy. As the  value  of  $C_2$  grows  larger  than
+$C_1$, more and more energy is dissipated on $R$ versus being transferred into
+$C_2$.
+
+As the value of $C_2$ grows smaller  than $C_1$, the energy transfer gets more
+and  more  efficient, peaking at a theoretical maximum  of  \SI{50}{\percent}.
+

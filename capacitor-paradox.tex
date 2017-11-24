@@ -3,18 +3,19 @@
 \input{preamble/packages}
 \input{preamble/title}
 
-%\addbibresource{bibliography/bibliography.bib}
+\addbibresource{bibliography/bibliography.bib}
 
 \begin{document}
     \twocolumn
     \maketitle
 
     \input{sections/introduction}
-    \newpage\input{sections/math}
+    \newpage\clearpage\input{sections/math}
+    \input{sections/results}
     \newpage\input{sections/discussion}
 
-    %\addcontentsline{toc}{section}{Literature}
-    %\newpage\printbibliography
+    \addcontentsline{toc}{section}{Literature}
+    \printbibliography
 
     %\clearpage
 

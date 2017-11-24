@@ -69,9 +69,9 @@ Transforming equation \ref{eq:diff} results yields:
     I(s) &= \frac{\Delta V}{R}\cdot\frac{1}{s + \frac{C_1 + C_2}{RC_1C_2}} \label{eq:laplaceresult}
 \end{align}
 
-Equation \ref{eq:laplaceresult} can  be  transformed back into the time domain
-by using the relationship described by  equation  \ref{eq:expdecay}, and so we
-obtain the well-known current formula for an RC-Network.
+Equation \ref{eq:laplaceresult} can be transformed back into the  time  domain
+by using the third relationship listed in  table \ref{tab:laplace-transforms},
+and  so  we  obtain  the  well-known   current   formula  for  an  RC-Network.
 
 \begin{equation}
     i(t) = I_0 \cdot e^{\frac{-t}{\tau}} \hspace{5mm} \begin{aligned}
@@ -92,6 +92,8 @@ current $i(t)$:
     p_R(t) &= i^2(t) R \label{eq:power} \\
     e_R(t) &= \int_0^t p_R(\tau)\,d\tau \label{eq:energy}
 \end{align}
+
+\newpage
 
 Substituting  the equation for $i(t)$ \ref{eq:currentresult}  into  the  power
 equation \ref{eq:power} yields:
@@ -124,5 +126,5 @@ the value of the resistor!}
 
 \begin{align}
     \lim_{t\to\infty} & \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \left(1 - e^{\frac{-2t\left(C_1+C_2\right)}{RC_1C_2}}\right) \\
-    &= \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \label{eq:resistor energy}
+    &= \frac{1}{2} \frac{C_1C_2}{C_1+C_2} {\Delta V}^2 \label{eq:resistor-energy}
 \end{align}

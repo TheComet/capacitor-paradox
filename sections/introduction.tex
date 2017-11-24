@@ -1,26 +1,13 @@
 \section{Introduction}
 
-The  \textit{Capacitor Paradox} is a  widely  known  trick  question  commonly
-encountered in the field of electronics, especially on  internet  forums,  and
-sometimes even in electrical engineering lectures, designed  to  throw  people
-off.
-
-\begin{figure}[th!]
-\centering
-\begin{circuitikz} \draw
-    (0,0) to[C=$C_1$,v<=$V_{0,C_1}$] (0,3)
-          to[spst=$S_1$]             (4,3)
-          to[C=$C_2$,v=$V_{0,C_2}$]  (4,0)
-          to                         (0,0)
-    ;
-\end{circuitikz}
-    \caption{}
-    \label{fig:two-caps}
-\end{figure}
+The \textit{Capacitor  Paradox}  is  a  widely  known  trick question commonly
+encountered   in   the   field   of   electronics,   especially  on   internet
+forums\cite{ref:physicsforums},  and sometimes even in electrical  engineering
+lectures, designed to throw people off.
 
 Consider   two   capacitors,   $C_1   =  \SI{1}{\micro\farad}$  and   $C_2   =
 \SI{1}{\micro\farad}$, with initial voltages of $V_{0,C_1}=\SI{10}{\volt}$ and
-$V_{0,C_2}=\SI{0}{\volt}$, respectively.
+$V_{0,C_2}=\SI{0}{\volt}$,  respectively  (see   figure   \ref{fig:two-caps}).
 
 The energy stored in $C_1$ is
 
@@ -30,7 +17,7 @@ The energy stored in $C_1$ is
 
 Now,  close  the switch $S_1$ and let the circuit settle. Since $C_1=C_2$, the
 charge from $C_1$ will evenly distribute over both capacitors  such  that both
-voltages come to be $V_{settle} = \SI{5}{\volt}$.
+voltages settle at $V_{settle} = \SI{5}{\volt}$.
 
 Calculating the new energy stored in both capacitors reveals something strange:
 
@@ -42,4 +29,17 @@ Calculating the new energy stored in both capacitors reveals something strange:
 
 The  new  total energy $e_{settle}$ is \textbf{half} of what  it  was  before.
 Where did the energy go?
+
+\begin{figure}[h!]
+\centering
+\begin{circuitikz} \draw
+    (0,0) to[C=$C_1$,v<=$V_{0,C_1}$] (0,3)
+          to[spst=$S_1$]             (4,3)
+          to[C=$C_2$,v=$V_{0,C_2}$]  (4,0)
+          to                         (0,0)
+    ;
+\end{circuitikz}
+    \caption{Closing the switch discharges $C_1$ into $C_2$. Calculating the new total amount of energy reveals that half of the energy has gone missing. Why?}
+    \label{fig:two-caps}
+\end{figure}
 

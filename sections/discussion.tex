@@ -1,35 +1,74 @@
-\section{Results}
+\section{Discussion}
 
-The equation \ref{eq:resistor-energy} from \textit{The Hard Way} is consistent with the formula we derived by using \textit{The Easy Way}.
+It  is  worth  noting  that the calculations in this report assume  the  worst
+possible  case  (the  voltage is a step function)  and  this  may  not  be  an
+assumption  you  can  make  in real world applications. A stepped voltage  can
+appear for example in a sample and hold (S\&H) circuit of an ADC converter, so
+in that situation -- if efficiency is a concern -- the  calculations  in  this
+report are relevant.
 
-If we assume that $C_2$ is completely discharged ($V_{0,C_2}=0$) and that $C_1=C_2$, we get the surprising result that a quarter of the transferred energy is dissipated on the resistor, \textbf{regardless of the resistor}. This turns out to be half of the total amount of initial energy, if you take into consideration that $C_1$ will have the same charge as $C_2$ after the circuit has settled.
+The  transfer  efficiency  will  \textbf{increase}  substantially  for  slower
+changes  in  the  input  voltage  ($\frac{dv}{dt}$).  Bypass  capacitors,  for
+example, are powered by voltage  regulators  that  typically  have fairly long
+ramp-up  times  (in  the  order  of  multiple  milli-seconds), so the transfer
+efficiency  in  these cases will be a lot better and circuits such as the  one
+seen  in  figure \ref{fig:bypass} won't dissipate any  significant  amount  of
+energy.
 
-\begin{align}
-    \frac{e_{C_2}}{e_R} &= \frac{\frac{1}{2}\frac{C_1^2C_2}{\left(C_1+C_2\right)^2}\Delta V^2}{\frac{1}{2}\frac{C_1C_2}{C_1+C_2}\Delta V^2} \\
-                        &= \frac{C_1}{C_1+C_2} \\
-                        &= \frac{1}{2}
-\end{align}
+It is also worth pointing out that adding a series inductor to the circuit, as
+seen in figure \ref{fig:series-inductor} has no  influence on the total amount
+of dissipated energy, even if the circuit oscillates.
 
-This, however, is only the case when $C_1=C_2$.
+Letting     $R\to    0$    in    equations    \ref{eq:resistor-energy2}    and
+\ref{eq:capacitor-energy2} does not converge to  any  limit.  It  is  still an
+interesting thought experiment to think about what might happen if one had two
+superconducting capacitors and were able to close  a switch close to the speed
+of  light. An educated guess might be that some of the  energy  is  dissipated
+over  the  electric arc formed between the switch contacts as it closes,  and,
+assuming  the  switch  is  able  to  close  before all of the  energy  can  be
+transferred (limited by the transmission speed of  electrons),  the  remaining
+energy  would  then  oscillate  back  and forth between  the  two  capacitors,
+assuming the  superconducting wire connecting them is slightly inductive. It's
+possible  that  the  energy  would  slowly decay over time as  electromagnetic
+radiation.
 
-To get an idea of how much energy is lost with different sized capacitors, we can calculate a ``transfer efficiency'' factor by dividing the energy that arrives at $C_2$, $e_{C_2}(t)\mid_{t\to\infty}$, by the total amount of transferred energy, $e_{C_2}(t)\mid_{t\to\infty} + e_R(t)\mid_{t\to\infty}$, for different ratios of $r=\frac{C_2}{C_1}$. That is:
+A  far  more  complete  explanation  of what happens for $R\to 0$ as  well  as
+analogies  to  water  tanks and thought experiments where the capacitor plates
+are    stretched     to    decrease    their    voltages    can    be    found
+here\cite{ref:arXiv:1309.5034}.
 
-\begin{equation}
-    \eta(r) = \frac{e_{C_2}(t)\mid_{t\to\infty}}{e_{C_2}(t)\mid_{t\to\infty} + e_R(t)\mid_{t\to\infty}}
-\end{equation}
-
-The resulting efficiency function can be seen in figure \ref{fig:transfer-efficiency}.
+\newpage
 
 \begin{figure}[t]
-    \centering
-    \input{images/transfer-efficiency.tex}
-    \caption{Efficiency of energy transfer for different $C_1$ to $C_2$ ratios.}
-    \label{fig:transfer-efficiency}
+\centering
+\begin{circuitikz} \draw
+    (0,0) node[rground]{}
+    (0,0) to[C=$10\micro F$,-*]  (0,2)
+          to[generic=$Z$]        (3,2)
+          to[C=$10\micro F$]     (3,0)
+          node[rground]{}
+    (0,2) node[vcc]{$V_{cc}$}
+    (3,2) to[short,i=to load,*-] (4.5,2)
+    ;
+\end{circuitikz}
+    \caption{A common way to bypass a load: Two capacitors and a ferrite bead (sometimes, inductors or even resistors are used in place of the ferrite bead).}
+    \label{fig:bypass}
 \end{figure}
 
-From this graph we see that when $\frac{C_2}{C_1}=1$ or $C_1=C_2$, the transfer efficiency is \SI{33.3}{\percent} (since $e_R\mid_{t\to\infty} = e_{C_2}\mid_{t\to\infty}$.
+\begin{figure}[t]
+\centering
+\begin{circuitikz} \draw
+    (0,0) to[C=$C_1$]     (0,2.5)
+          to[spst=$S_1$]  (1.5,2.5)
+          to[L=$L$]       (3,2.5)
+          to[R=$R$]       (5,2.5)
+          to[C=$C_2$]     (5,0)
+          to[short]       (0,0)
+    ;
+\end{circuitikz}
+    \caption{Inductor $L$ has no influence on any of the previous calculations.}
+    \label{fig:series-inductor}
+\end{figure}
 
-As the value of $C_2$ grows larger than $C_1$, more and more energy is dissipated on $R$ versus being transferred into $C_2$.
-
-As the value of $C_2$ grows smaller than $C_1$, the energy transfer gets more and more efficient, peaking at a theoretical maximum of \SI{50}{\percent}.
+\vspace*{2cm}
 

@@ -4,34 +4,6 @@ Perhaps the easiest explanation  of  all  is  to realise that the model can be
 further simplified into an equivalent circuit. Consider the  circuits shown in
 figures \ref{fig:rearrange} and \ref{fig:equivalent-circuit}.
 
-\begin{figure}[th!]
-\centering
-\begin{circuitikz} \draw
-    (0,0) to[C=$C_2$]          (0,2)
-          to[C=$C_1$]          (0,4)
-          to[spst=$S_1$]       (3,4)
-          to[R=$R$,i>^=$i(t)$] (3,0)
-          to                   (0,0)
-    (0.5,4) to[open,v^=$\Delta V$] (0.5,0)
-    ;
-\end{circuitikz}
-    \caption{Re-arrangement of the same circuit seen in figure \ref{fig:circuit}.}
-    \label{fig:rearrange}
-\end{figure}
-
-\begin{figure}[th!]
-\centering
-\begin{circuitikz} \draw
-    (0,0) to[C=$C_{eq}$,v<=$\Delta V$] (0,3)
-          to                           (3,3)
-          to[R=$R$,i>^=$i(t)$]         (3,0)
-          to                           (0,0)
-    ;
-\end{circuitikz}
-    \caption{Equivalent circuit of figure \ref{fig:rearrange}}
-    \label{fig:equivalent-circuit}
-\end{figure}
-
 The equivalent circuit seen in figure  \ref{fig:equivalent-circuit}  makes  it
 very easy to  see  that  all of the energy in $C_{eq}$ will discharge over $R$
 and dissipate. The calculation is:
@@ -45,3 +17,51 @@ Using the  same  numbers  from  the  first  example,  we  find  that $C_{eq} =
 \SI{500}{\nano\farad}$,  $\Delta  V   =   \SI{10}{\volt}$   and   $e_{loss}  =
 \SI{25}{\micro\joule}$, as expected.
 
+\newpage
+
+\begin{figure}[t]
+    \centering
+    \begin{circuitikz} \draw
+        (0,0) to[C=$C_1$,v<=$V_{0,C_1}$,i=$i(t)$] (0,3)
+              to[spst]                            (1.5,3)
+              to[R=$R$,v=$V_R$,i=$i(t)$]          (4,3)
+              to[C=$C_2$,v=$V_{0,C_2}$,i>=$i(t)$] (4,0)
+              to                                  (0,0)
+        ;
+    \end{circuitikz}
+    \caption{}
+    \label{fig:circuit}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \begin{circuitikz} \draw
+            (0,0) to[C=$C_2$]          (0,2)
+                  to[C=$C_1$]          (0,4)
+                  to[spst=$S_1$]       (3,4)
+                  to[R=$R$,i>^=$i(t)$] (3,0)
+                  to                   (0,0)
+            (0.5,4) to[open,v^=$\Delta V$] (0.5,0)
+            ;
+        \end{circuitikz}
+        \caption{}
+        \label{fig:rearrange}
+    \end{subfigure}
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \begin{circuitikz} \draw
+            (0,0) to[C=$C_{eq}$,v<=$\Delta V$] (0,3)
+                  to                           (3,3)
+                  to[R=$R$,i>^=$i(t)$]         (3,0)
+                  to                           (0,0)
+            ;
+        \end{circuitikz}
+        \caption{}
+        \label{fig:equivalent-circuit}
+    \end{subfigure}
+    \caption{Shows \textbf{(a)} a re-arrangement of the circuit from figure \ref{fig:circuit} and \textbf{(b)} a simplified version of the circuit.}
+\end{figure}
+
+\vspace*{2cm}
